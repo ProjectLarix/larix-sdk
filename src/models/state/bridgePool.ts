@@ -1,0 +1,30 @@
+import {PublicKey} from "@solana/web3.js";
+import BN from "bn.js";
+export interface BridgePool{
+    version:number,
+    base:PublicKey,
+    owner:PublicKey,
+    pendingOwner:PublicKey,
+    ammId:PublicKey,
+    ammVersion:number,
+    lpMint:PublicKey,
+    lpSupply:PublicKey,
+    coinSupply:PublicKey,
+    pcSupply:PublicKey,
+    addLpWithdrawAmountAuthority:PublicKey,
+    coinMintPrice:PublicKey,
+    coinMintDecimal:number,
+    pcMintPrice:PublicKey,
+    pcMintDecimal:number,
+    ammOpenOrders:PublicKey,
+    ammCoinMintSupply:PublicKey,
+    ammPcMintSupply:PublicKey,
+    bump:number,
+    lpPriceAccount:PublicKey,
+    isFarm:boolean,
+    farmPoolId:PublicKey,
+    farmPoolVersion:number,
+    farmLedger:PublicKey,
+    rewardSupply:PublicKey[],
+    pendingAmount:BN
+}

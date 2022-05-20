@@ -1,0 +1,1024 @@
+{
+  "version": "0.1.0",
+  "name": "larix_lock_pool",
+  "instructions": [
+    {
+      "name": "initializeFarmLedger",
+      "accounts": [
+        {
+          "name": "initAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "lpMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "bridgePoolId",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "farmPoolId",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "farmProgramId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ledger",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "farmVersion",
+          "type": "u8"
+        },
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "initializeLockPool",
+      "accounts": [
+        {
+          "name": "initAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammOpenOrders",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinMintSupply",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcMintSupply",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "farmPoolId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "farmLedger",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "farmLpSupply",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lpSupply",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "coinSupply",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "pcSupply",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rewardASupply",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rewardBSupply",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "addLarixAuthority",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
+        {
+          "name": "ammVersion",
+          "type": "u8"
+        },
+        {
+          "name": "farmPoolVersion",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "initializeUserLarixInfo",
+      "accounts": [
+        {
+          "name": "userLarixInfo",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "lockPool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "setUserLarixInfo",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userLarixInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authorityAccount",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "larixAmount",
+          "type": "u64"
+        },
+        {
+          "name": "lockTime",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "closeUserLarixInfo",
+      "accounts": [
+        {
+          "name": "userLarixInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "destination",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initializePosition",
+      "accounts": [
+        {
+          "name": "position",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "lockPool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "closePosition",
+      "accounts": [
+        {
+          "name": "position",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "destination",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "stake",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockPoolLpSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "farmPoolProgramId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "farmPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "farmPoolAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "farmPoolLpSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "farmLedger",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rewardAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rewardVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sysvarClock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rewardAccountB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rewardVaultB",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "addLiquidity",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userLarixInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "position",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgramId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammProgramId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammId",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammOpenOrders",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammTargetOrders",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinMintSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcMintSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "coinSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pcSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userPcAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "withdraw",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "position",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockPoolLpSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userLpTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "farmPoolProgramId",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "farmPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "farmPoolAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "farmPoolLpSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "farmLedger",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rewardAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rewardVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sysvarClock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rewardAccountB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rewardVaultB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userRewardAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userRewardAccountB",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "position",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rewardAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rewardAccountB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userRewardAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userRewardAccountB",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "setPendingOwner",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "newOwner",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "setLockDuration",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "lockDuration",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "setAddLarixAuthority",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "addLarixAuthority",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "setFarmLpSupply",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "farmLpSupply",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "receivePendingOwner",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pendingOwner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "LockPool",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "pendingOwner",
+            "type": "publicKey"
+          },
+          {
+            "name": "lpMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "ammId",
+            "type": "publicKey"
+          },
+          {
+            "name": "ammVersion",
+            "type": "u8"
+          },
+          {
+            "name": "ammOpenOrders",
+            "type": "publicKey"
+          },
+          {
+            "name": "ammCoinMintSupply",
+            "type": "publicKey"
+          },
+          {
+            "name": "ammPcMintSupply",
+            "type": "publicKey"
+          },
+          {
+            "name": "farmPoolId",
+            "type": "publicKey"
+          },
+          {
+            "name": "farmPoolVersion",
+            "type": "u8"
+          },
+          {
+            "name": "farmLedger",
+            "type": "publicKey"
+          },
+          {
+            "name": "lpSupply",
+            "type": "publicKey"
+          },
+          {
+            "name": "coinSupply",
+            "type": "publicKey"
+          },
+          {
+            "name": "pcSupply",
+            "type": "publicKey"
+          },
+          {
+            "name": "rewardASupply",
+            "type": "publicKey"
+          },
+          {
+            "name": "rewardBSupply",
+            "type": "publicKey"
+          },
+          {
+            "name": "addLarixAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "lastUpdateSlot",
+            "type": "u64"
+          },
+          {
+            "name": "lockDuration",
+            "type": "i64"
+          },
+          {
+            "name": "rewardAPerShare",
+            "type": "u128"
+          },
+          {
+            "name": "rewardBPerShare",
+            "type": "u128"
+          },
+          {
+            "name": "farmLpSupply",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding1",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding2",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding3",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding4",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding5",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding6",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding7",
+            "type": "publicKey"
+          },
+          {
+            "name": "padding8",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Position",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "pool",
+            "type": "publicKey"
+          },
+          {
+            "name": "lpAmount",
+            "type": "u64"
+          },
+          {
+            "name": "startTime",
+            "type": "i64"
+          },
+          {
+            "name": "endTime",
+            "type": "i64"
+          },
+          {
+            "name": "startRewardAPerShare",
+            "type": "u128"
+          },
+          {
+            "name": "startRewardBPerShare",
+            "type": "u128"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserLarixInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "lockPool",
+            "type": "publicKey"
+          },
+          {
+            "name": "larixAmount",
+            "type": "u64"
+          },
+          {
+            "name": "lockTime",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "MathOverflow",
+      "msg": "Math overflow"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidFarmVersion",
+      "msg": "Invalid farm version"
+    },
+    {
+      "code": 6002,
+      "name": "PoolIsStale",
+      "msg": "Pool is stale"
+    },
+    {
+      "code": 6003,
+      "name": "PositionOwnerError",
+      "msg": "Position must be owned by the owner or not init"
+    },
+    {
+      "code": 6004,
+      "name": "PositionPoolError",
+      "msg": "The pool of position must natch the pool or not init"
+    },
+    {
+      "code": 6005,
+      "name": "Locked",
+      "msg": "Locked"
+    },
+    {
+      "code": 6006,
+      "name": "AmountMustBeZero",
+      "msg": "Amount Must Be Zero"
+    },
+    {
+      "code": 6007,
+      "name": "AmountMustNotBeZero",
+      "msg": "Amount Must Not Be Zero"
+    },
+    {
+      "code": 6008,
+      "name": "PoolError",
+      "msg": "pool error"
+    },
+    {
+      "code": 6009,
+      "name": "StakeFailed",
+      "msg": "Stake Failed"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidAccountInput",
+      "msg": "Invalid Account Input"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidOracleConfig",
+      "msg": "Invalid Oracle Config"
+    },
+    {
+      "code": 6012,
+      "name": "InvokeFailed",
+      "msg": "Invoke Failed"
+    },
+    {
+      "code": 6013,
+      "name": "AmmNotInSwapRouter",
+      "msg": "Amm Not In Swap Router"
+    },
+    {
+      "code": 6014,
+      "name": "AmmNotMatchPoolAmmAndNotInSwapRouter",
+      "msg": "Amm Not Match Pool Amm And Not In Swap Router"
+    },
+    {
+      "code": 6015,
+      "name": "AccountNotMatch",
+      "msg": "AccountNotMatch"
+    },
+    {
+      "code": 6016,
+      "name": "InvalidAccountData",
+      "msg": "Invalid Account Data"
+    },
+    {
+      "code": 6017,
+      "name": "WithdrawFailed",
+      "msg": "Withdraw Failed"
+    },
+    {
+      "code": 6018,
+      "name": "PoolMustBeFarm",
+      "msg": "Pool Must Be Farm"
+    },
+    {
+      "code": 6019,
+      "name": "PoolMustNotBeFarm",
+      "msg": "Pool Must Not Be Farm"
+    },
+    {
+      "code": 6020,
+      "name": "NoEnoughLpBalance",
+      "msg": "No Enough Lp Balance"
+    },
+    {
+      "code": 6021,
+      "name": "NoAuthority",
+      "msg": "No Authority"
+    }
+  ]
+}
