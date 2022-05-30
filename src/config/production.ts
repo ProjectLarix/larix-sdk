@@ -312,7 +312,7 @@ export const MARKET = {
     bonfida:{
         name:"bonfida",
         programId:new PublicKey("3cKREQ3Z7ioCQ4oa23uGEuzekhQWPxKiBEZ87WfaAZ5p"),
-        marketId: new PublicKey("5geyZJdffDBNoMqEbogbPvdgH9ue7NREobtW8M3C1qfe"),
+        marketId: new PublicKey("5enDUZdptakV39Sra9QQYBstJbLVZHHqT74CgeL2fMqV"),
         authorityId: new PublicKey("3CUxD14BycC4a4K4xPcgU7okw9RwP6vhkycp3umxfyzZ"),
         larixOracleProgramId: new PublicKey("GMjBguH3ceg9wAHEMdY5iZnvzY6CgBACBDvkWmjR7upS"),
         mineSupply: new PublicKey("7R5YVRUqviwQTah8WSHHGehwwwaiiq72N4YSdTbE1bNw"),
