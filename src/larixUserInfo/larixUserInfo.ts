@@ -147,7 +147,7 @@ export class LarixUserInfo{
             }
             const userCumulativeBorrowRate = eX(borrow.cumulativeBorrowRateWads.toString(),-18)
             const compoundedInterestRate = reserve.cumulativeBorrowRate.div(userCumulativeBorrowRate)
-            const amount = eX(borrow.cumulativeBorrowRateWads.toString(),-18-reserve.state.info.liquidity.mintDecimals).times(compoundedInterestRate)
+            const amount = eX(borrow.borrowedAmountWads.toString(),-18-reserve.state.info.liquidity.mintDecimals)
             const liquidity:LarixObligationLiquidity = {
                 reserve,
                 amount,
