@@ -116,7 +116,7 @@ export class LarixMarkets{
             marketData.reserves.forEach(reserve=>{
                 if (reserve.state.info.isLP){
                     this.calcReserveRewardApy(reserve,larixPriceInfo.price)
-                    const lpInfo = reserve.state.info.lpInfo
+                    const lpInfo = reserve.lpInfo
                     // @ts-ignore
                     const rewardAPriceInfo = this.getPriceInfo(priceInfo,lpInfo.rewardASymbol)
                     // @ts-ignore
@@ -167,13 +167,14 @@ export class LarixMarkets{
                 const ammPcMint = TokenAccountParser(lpConfig.ammPcMintSupply,accounts[index++])
                 const poolInfo = FarmPoolParser(lpConfig.farmPoolID,accounts[index++])
                 const farmPoolLpToken =  TokenAccountParser(lpConfig.farmPoolLpSupply,accounts[index++])
-                reserveState.info.lpInfo = this.getLpInfo(lpConfig,poolInfo,lpMint,farmPoolLpToken)
+
 
                 const lpPrice = this.getLpPrice(amm, ammOpenOrders,ammCoinMint,ammPcMint,coinMintPrice,pcMintPrice,lpMint)
                 reserveState.info.liquidity.marketPrice = eX(lpPrice,18)
 
                 const reserve = this.afterLoad(currentSlot,reserveState,lpConfig)
                 reserve.market = marketData
+                reserve.lpInfo = this.getLpInfo(lpConfig,poolInfo,lpMint,farmPoolLpToken)
                 marketData.reserveStates.push(reserveState)
                 marketData.reservesMap.set(lpConfig.reserveId.toString(),reserve)
                 marketData.reserves.push(reserve)
@@ -299,7 +300,12 @@ export class LarixMarkets{
     private calcApy(reserve:LarixReserve){
         const currentBorrowRate = this.getCurrentBorrowRate(reserve.state.info ,reserve.utilizationRate)
         const slotInterestRate = currentBorrowRate.div(SLOTS_PER_YEAR)
-        reserve.borrowApy = new BigNumber(slotInterestRate.plus(1).toNumber()**REAL_SLOTS_PER_YEAR).minus(1)
+        if (reserve.state.info.isLP) {
+            reserve.borrowApy = new BigNumber(0)
+        } else {
+            reserve.borrowApy = new BigNumber(slotInterestRate.plus(1).toNumber()**REAL_SLOTS_PER_YEAR).minus(1)
+        }
+
         reserve.supplyApy = reserve.borrowApy.times(0.8).times(reserve.utilizationRate)
 
     }
@@ -350,18 +356,19 @@ export class LarixMarkets{
                     .times(reserve.miningSpeed).times(REAL_SLOTS_PER_DAY).times(365)
                     .times(larixPrice)
                     .div(reserve.totalDepositValue.isZero()?1:reserve.totalDepositValue)
-                    .times(reserve.reserveConfig.name==='main'?10:1)
+                    .times(reserve.market.config.name==='main'?10:1)
             reserve.borrowRewardApy =
                 reserve.borrowMiningRate
                     .times(reserve.miningSpeed).times(REAL_SLOTS_PER_DAY).times(365)
                     .times(larixPrice)
                     .div(reserve.totalBorrowedValue.isZero()?1:reserve.totalBorrowedValue)
-                    .times(reserve.reserveConfig.name==='main'?10:1)
+                    .times(reserve.market.config.name==='main'?10:1)
+        //    reserve.reserveConfig.name!=='main'
         }
     }
     private calcPoolFeeApy(lpInfo:LpInfo,raydiumPairs :RaydiumPair[]){
         const res =  raydiumPairs.find((item:any) => item.amm_id === lpInfo.amm_id.toString())?.apy
-        lpInfo.lpFeesApr = res!
+        lpInfo.lpFeesApr = res!/100
     }
     private calcLpApyDetails(lpInfo:LpInfo,lpPrice:BigNumber,rewardAPriceInfo:PriceInfo, rewardBPriceInfo:PriceInfo){
         const tvl = lpInfo.farmPoolLpSupply.times(lpPrice)
@@ -371,7 +378,6 @@ export class LarixMarkets{
         const aprB = rewardBOneYear.div(tvl.isEqualTo(0)?1:tvl).times(100)
         const apyA = (1+Number(aprA.toFixed(4))/365/100)**365-1
         const apyB = (1+Number(aprB.toFixed(4))/365/100)**365-1
-        const totalApr = aprA.plus(aprB)
         const totalApy =  apyA + apyB
         lpInfo.lpApr = new BigNumber(totalApy)
         lpInfo.lpRewardApyA = new BigNumber(apyA)

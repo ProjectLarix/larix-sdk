@@ -38,7 +38,7 @@ export type LarixReserve = {
 
     supplyApy:BigNumber,
     borrowApy:BigNumber,
-
+    lpInfo: LpInfo,
     supplyRewardApy:BigNumber|number,
     borrowRewardApy:BigNumber|number,
 

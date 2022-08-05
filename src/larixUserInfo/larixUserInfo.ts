@@ -242,7 +242,6 @@ export class LarixUserInfo{
                     }
                 }]
         })
-        // console.log("accountInfos",accountInfos)
         const result:Map<string,State<Mining>[]> = new Map<string, State<Mining>[]>()
         lendingMarketIDs.forEach(lendingMarketID=>{
             const minings = new Array<State<Mining>>();

@@ -74,7 +74,6 @@ export class CollateralAction extends BaseAction{
                     })
                 }
             }
-            console.log("appendReserves",appendReserves);
         }
         await refreshReserve(
             connection,

@@ -19,7 +19,7 @@ export interface Reserve {
     bridgePool: any;
     depositLimit: number;
     isLP: boolean,
-    lpInfo: LpInfo,
+
     // other
 }
 export interface LpInfo{

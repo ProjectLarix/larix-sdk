@@ -17,10 +17,11 @@ describe('test data requset',function (){
     let mndePrice:BigNumber
     let larixUserInfo:LarixUserInfo
     let larixMarket:LarixMarkets
+
     const connection =  new Connection("https://explorer-api.mainnet-beta.solana.com", {
         commitment:'recent'
     })
-    const privateKey = Keypair.fromSecretKey(Uint8Array.from([]))
+     const privateKey = Keypair.fromSecretKey(Uint8Array.from([]))
     it("Read util method", async function () {
         const marketRequests = await Promise.all(
             [
@@ -30,11 +31,8 @@ describe('test data requset',function (){
             ]
         )
         raydiumPairs = marketRequests[0]
-        // console.log(raydiumPairs)
         larixPrice = marketRequests[1]
-        // console.log(larixPrice.toString())
         mndePrice = marketRequests[2]
-        // console.log('mndePrice',mndePrice.toString())
     });
     it("Read larix markets", async function () {
         larixMarket = new LarixMarkets(connection)
@@ -54,6 +52,10 @@ describe('test data requset',function (){
                     +"\nborrowApy: "+reserve.borrowApy.toString()
                     +"\nsupplyRewardApy: "+reserve.supplyRewardApy.toString()
                     +"\nborrowRewardApy: "+reserve.borrowRewardApy.toString()
+                    // +reserve.state.info.lpInfo
+                    +"\nlpRewardApyA: "+(reserve.lpInfo?reserve.lpInfo.lpRewardApyA.toString():"0")
+                    +"\nlpRewardApyB: "+(reserve.lpInfo?reserve.lpInfo.lpRewardApyB.toString():"0")
+                    +"\nlpFeesApr:"+(reserve.lpInfo?reserve.lpInfo.lpFeesApr.toString():"0")
                 )
             })
         })
